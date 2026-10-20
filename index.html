@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KeyCraft Studio - Gantungan Kunci Custom Pelajar</title>
+  <style>
+    /* RESET & BASE STYLES */
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
+    
+    /* LAYOUT & CONTAINER */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 50px 0; border-bottom: 1px solid #e2e8f0; }
+
+    /* UI COMPONENTS */
+    .btn { display: inline-block; background-color: #059669; color: #fff; padding: 12px 24px; border-radius: 8px; text-decoration: none; border: none; font-weight: 600; cursor: pointer; transition: 0.2s; text-align: center; }
+    .btn:hover { background-color: #047857; }
+    .card { background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.08); margin-bottom: 20px; }
+
+    /* HERO SECTION */
+    .hero { text-align: center; padding: 60px 0 40px; background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%); }
+    .hero h1 { font-size: 2.2rem; color: #065f46; margin-bottom: 12px; }
+    .hero p { font-size: 1.1rem; color: #047857; margin-bottom: 20px; }
+
+    /* FORM & INTERACTIVES */
+    .form-group { margin-bottom: 16px; text-align: left; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 6px; color: #334155; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; }
+    
+    /* GRID SYSTEM */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 20px; }
+    .product-tag { background: #d1fae5; color: #065f46; padding: 4px 8px; border-radius: 4px; font-size: 0.85rem; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <!-- 1. HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <h1>🔑 KeyCraft Studio</h1>
+      <p>Bikin Gantungan Kunci Custom Suka-Suka! Cocok untuk Kelas, Ekskul, Komunitas, atau Hadiah Teman.</p>
+      <a href="#kalkulator" class="btn">Hitung Harga & Pesan Custom</a>
+    </div>
+  </section>
+
+  <!-- 2. PILIHAN KATALOG / BAHAN -->
+  <section>
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 20px;">Varian Gantungan Kunci</h2>
+      <div class="grid">
+        <div class="card">
+          <span class="product-tag">Terfavorit</span>
+          <h3 style="margin-top: 8px;">Akrilik Custom 2 Sisi</h3>
+          <p style="color: #64748b; font-size: 0.95rem;">Cetak foto/karakter favorit/logo ekskul. Tahan air & tidak mudah gores.</p>
+          <p style="font-weight: bold; color: #059669; margin-top: 10px;">Mulai Rp 12.000 / pcs</p>
+        </div>
+        <div class="card">
+          <span class="product-tag">Elegan</span>
+          <h3 style="margin-top: 8px;">Kayu Ukir Grafir</h3>
+          <p style="color: #64748b; font-size: 0.95rem;">Tampilan estetik & ramah lingkungan. Cocok untuk nama/initial custom.</p>
+          <p style="font-weight: bold; color: #059669; margin-top: 10px;">Mulai Rp 15.000 / pcs</p>
+        </div>
+        <div class="card">
+          <span class="product-tag">Hemat Acara</span>
+          <h3 style="margin-top: 8px;">Pin Button Keychain</h3>
+          <p style="color: #64748b; font-size: 0.95rem;">Ideal untuk souvenir event sekolah, panitia, atau merchandise kelas.</p>
+          <p style="font-weight: bold; color: #059669; margin-top: 10px;">Mulai Rp 6.000 / pcs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. INTERACTIVE SIMULATOR (KALKULATOR HARGA GANTUNGAN KUNCI) -->
+  <section id="kalkulator" style="background-color: #f1f5f9;">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 8px;">Simulasi Harga Pesanan</h2>
+      <p style="text-align: center; color: #64748b; margin-bottom: 24px;">Pilih bahan dan jumlah untuk melihat estimasi biaya & potongan grosir.</p>
+      
+      <div class="card" style="max-width: 500px; margin: 0 auto;">
+        <div class="form-group">
+          <label for="bahan">Bahan / Jenis Gantungan Kunci</label>
+          <select id="bahan" onchange="hitungTotal()">
+            <option value="12000">Akrilik Custom (Rp 12.000)</option>
+            <option value="15000">Kayu Ukir Grafir (Rp 15.000)</option>
+            <option value="6000">Pin Button Souvenir (Rp 6.000)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="jumlah">Jumlah Pasang/Pcs</label>
+          <input type="number" id="jumlah" value="1" min="1" oninput="hitungTotal()" />
+        </div>
+
+        <div id="infoDiskon" style="font-size: 0.85rem; color: #059669; font-weight: 600; margin-bottom: 12px; display: none;">
+          🎉 Selamat! Anda mendapatkan Potongan Grosir (Order ≥ 10 Pcs).
+        </div>
+
+        <hr style="margin: 16px 0; border: 0; border-top: 1px solid #e2e8f0;" />
+        <h3>Total Biaya: <span id="totalHarga" style="color: #059669;">Rp 12.000</span></h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. ORDER FORM -->
+  <section id="order">
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 24px;">Formulir Pemesanan Custom</h2>
+      <div class="card" style="max-width: 500px; margin: 0 auto;">
+        <form onsubmit="kirimPesanan(event)">
+          <div class="form-group">
+            <label for="nama">Nama Pemesan</label>
+            <input type="text" id="nama" placeholder="Contoh: Budi (Kelas XII IPA 1)" required />
+          </div>
+          <div class="form-group">
+            <label for="whatsapp">Nomor WhatsApp</label>
+            <input type="tel" id="whatsapp" placeholder="081234567890" required />
+          </div>
+          <div class="form-group">
+            <label for="catatan">Detail Desain / Custom Nama</label>
+            <textarea id="catatan" rows="3" placeholder="Tuliskan nama/teks yang mau dicetak, atau kirimkan file gambar via WA..." required></textarea>
+          </div>
+          <button type="submit" class="btn" style="width: 100%;">Pesan via WhatsApp Sekarang</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    function hitungTotal() {
+      const hargaSatuan = parseInt(document.getElementById('bahan').value);
+      const jumlah = parseInt(document.getElementById('jumlah').value) || 1;
+      let total = hargaSatuan * jumlah;
+      
+      const infoDiskon = document.getElementById('infoDiskon');
+
+      // Diskon Grosir 10% jika pesanan >= 10 pcs
+      if (jumlah >= 10) {
+        total = total * 0.9;
+        infoDiskon.style.display = 'block';
+      } else {
+        infoDiskon.style.display = 'none';
+      }
+
+      document.getElementById('totalHarga').innerText = 'Rp ' + Math.round(total).toLocaleString('id-ID');
+    }
+
+    function kirimPesanan(event) {
+      event.preventDefault();
+      
+      const nama = document.getElementById('nama').value;
+      const wa = document.getElementById('whatsapp').value;
+      const catatan = document.getElementById('catatan').value;
+      const total = document.getElementById('totalHarga').innerText;
+      
+      const selectBahan = document.getElementById('bahan');
+      const namaBahan = selectBahan.options[selectBahan.selectedIndex].text;
+      const jumlah = document.getElementById('jumlah').value;
+
+      // Masukkan nomor WhatsApp bisnismu di sini (gunakan format 62)
+      const noTujuan = "6281234567890"; 
+      
+      const pesan = `Halo KeyCraft Studio, saya mau pesan Gantungan Kunci Custom!%0A%0A*Nama Pemesan:* ${nama}%0A*No WA:* ${wa}%0A*Varian:* ${namaBahan}%0A*Jumlah:* ${jumlah} pcs%0A*Estimasi Total:* ${total}%0A*Detail Desain:* ${catatan}`;
+      
+      window.open(`https://wa.me/${noTujuan}?text=${pesan}`, '_blank');
+    }
+  </script>
+
+</body>
+</html>
